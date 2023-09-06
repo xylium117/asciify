@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--=============== REMIXICONS ===============-->
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="styles.css">
+
+        <title>ASCII Art Filter</title>
+    </head>
+    <body>
+        <div class="one">
+            <h1>ASCII Art Filter</h1>
+        </div>
+        <div class="container">
+            <label for="images" class="drop-container" id="dropcontainer">
+                <span class="drop-title">Drop files here</span>
+                or
+                <input type="file" name="picture" id="images" accept="image/*" required>
+            </label>
+            <button id = "copy" class="button-82-pushable" role="button">
+                    <span class="button-82-shadow"></span>
+                    <span class="button-82-edge"></span>
+                    <span class="button-82-front text">
+                        Copy
+                    </span>
+                </button><br>
+        </div>
+          
+        <canvas id="preview" style="display: none;"></canvas>
+        <p id="ascii"></p>
+        
+        <!--=============== MAIN JS ===============-->
+        <script src="main.js"></script>
+    </body>
+</html>

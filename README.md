@@ -25,7 +25,7 @@ Check out the live demo [here](https://ayushmansarkar.github.io/ascii-art-filter
 1. Clone the repository:
 
    ```shell
-   git clone https://github.com/ayushmansarkar/ascii-art-filter.git
+   git clone https://github.com/AyushmanSarkar/ascii-art-filter.git
 
 ## Sample Output
 

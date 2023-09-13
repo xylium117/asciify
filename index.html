@@ -2,338 +2,136 @@
 <html lang="en">
 
 <head>
-	<title>ASCII Image Generator | v2</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ASCII Imae Generator | v1</title>
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" href="./icon.png" type="image/png" />
 
-	<!--=============== META PROPERTIES ===============-->
-	<meta property="og:title" content="ASCII Image Generator">
-	<meta property="og:url" content="http://ayushmansarkar.github.io/ascii-art/">
-	<meta property="og:type" content="website">
-	<meta property="og:description" content="Creates ASCII art from image">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="keywords" content="ascii art,ascii">
-	<meta name="description" content="Creates ASCII art from image">
-	<link rel="icon" href="./icon.png" type="image/png" />
+    <!--=============== PREREQUISITES ===============-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-	<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-
-	<link rel="stylesheet" href="https://cdn.duetds.com/api/fonts/3.0.2/lib/localtapiola.css"
-		integrity="sha384-5JYmtSD7nykpUvSmTW1CHMoBDkBZUpUmG0vuh+NUVtZag3F75Kr7+/JU3J7JV6Wq" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://cdn.duetds.com/api/css/3.0.2/lib/duet.min.css"
-		integrity="sha384-NTsBjwMwoXdRS/BtOcDzwfXhNrB5QhnvxPCbw1DfpBRPcm9AUPqqHrq7Q2Fa9BFI" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://cdn.duetds.com/api/fonts/3.0.2/lib/turva.css"
-		integrity="sha384-hHdwZODJ+y2QoCpmMYq9dSnwexFN8FO9B9cVru7Y7iy2l3bXKpf/vNfPASXgfKWU" crossorigin="anonymous" />
-	<script type="module" src="https://cdn.duetds.com/api/components/7.0.2/lib/duet/duet.esm.js"
-		integrity="sha384-1qKb9fhuDV3MnJxh/QbE+0AeTqLIGkKfidwEnz33Pv2Ia3uDr0q3eQaMVssmDauv" crossorigin="anonymous">
-	</script>
-	<script nomodule src="https://cdn.duetds.com/api/components/7.0.2/lib/duet/duet.js"
-		integrity="sha384-zMuSp8xgzISwIcYpbtn+QiOM21Z7wwN00sMB3QCehLPWeHGLeQEVRRn7TjVqsxHU" crossorigin="anonymous">
-	</script>
-
-	<!--=============== REMIXICONS ===============-->
-	<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-
-	<!--=============== CSS ===============-->
-	<link rel="stylesheet" href="style.css">
-
-	<!--=============== PREREQUISITES ===============-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="ascii.js"></script>
-	<script>
-		document.onkeydown = (e) => {
-			if (e.key == 123) {
-				e.preventDefault();
-			}
-			if (e.ctrlKey && e.shiftKey && e.key == 'I') {
-				e.preventDefault();
-			}
-			if (e.ctrlKey && e.shiftKey && e.key == 'C') {
-				e.preventDefault();
-			}
-			if (e.ctrlKey && e.shiftKey && e.key == 'J') {
-				e.preventDefault();
-			}
-			if (e.ctrlKey && e.key == 'U') {
-				e.preventDefault();
-			}
-		};
-
-		toggleAdvancedClicked = function (e) {
-			var advancedOptions = document.getElementById("advancedOptions");
-			var btn = document.getElementById("toggleAdvancedSign");
-			if (advancedOptions.style.display == "none") {
-				advancedOptions.style.display = "block";
-				stripe.classList.add('animate');
-			} else {
-				advancedOptions.style.display = "none";
-			}
-		}
-		setGraphicPreset = function (e) {
-			processStepSlider.value = processStepSlider.max;
-			gaussianBlurSlider.value = "0";
-			thresholdSlider.value = "0.55";
-			dilateSlider.value = "0";
-			erodeSlider.value = "0";
-			sdfRadiusSlider.value = "0";
-			inverseMatchSlider.value = "4";
-			//allowedJitterSlider.value = "1";
-			updateAllPropertyValues();
-		}
-		setPhotoPreset = function (e) {
-			processStepSlider.value = processStepSlider.max;
-			gaussianBlurSlider.value = "1";
-			thresholdSlider.value = "0.2";
-			dilateSlider.value = "0";
-			erodeSlider.value = "0";
-			sdfRadiusSlider.value = "2";
-			inverseMatchSlider.value = "6.5";
-			//allowedJitterSlider.value = "1";
-			updateAllPropertyValues();
-		}
-	</script>
-
-	<!--=============== ICONIFY ===============-->
-	<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-
-	<!--=============== DUET ===============-->
-	<link rel="stylesheet" href="https://cdn.duetds.com/api/fonts/3.0.2/lib/localtapiola.css"
-		integrity="sha384-5JYmtSD7nykpUvSmTW1CHMoBDkBZUpUmG0vuh+NUVtZag3F75Kr7+/JU3J7JV6Wq" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://cdn.duetds.com/api/css/3.0.2/lib/duet.min.css"
-		integrity="sha384-NTsBjwMwoXdRS/BtOcDzwfXhNrB5QhnvxPCbw1DfpBRPcm9AUPqqHrq7Q2Fa9BFI" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://cdn.duetds.com/api/fonts/3.0.2/lib/turva.css"
-		integrity="sha384-hHdwZODJ+y2QoCpmMYq9dSnwexFN8FO9B9cVru7Y7iy2l3bXKpf/vNfPASXgfKWU" crossorigin="anonymous" />
-	<script type="module" src="https://cdn.duetds.com/api/components/7.0.2/lib/duet/duet.esm.js"
-		integrity="sha384-1qKb9fhuDV3MnJxh/QbE+0AeTqLIGkKfidwEnz33Pv2Ia3uDr0q3eQaMVssmDauv" crossorigin="anonymous">
-	</script>
-	<script nomodule src="https://cdn.duetds.com/api/components/7.0.2/lib/duet/duet.js"
-		integrity="sha384-zMuSp8xgzISwIcYpbtn+QiOM21Z7wwN00sMB3QCehLPWeHGLeQEVRRn7TjVqsxHU" crossorigin="anonymous">
-	</script>
+    <!--=============== REMIXICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 
-<body onload="onDomLoaded()" oncontextmenu="return false">
-	<section class="header">
-		<main class="main">
-			<div class="text-box" style="position: fixed;">
-				<a href="javascript:void(0)" onclick="toggleAdvancedClicked()" class="btn btn-white btn-animate">
-					<i class="ri-settings-3-line"></i></a>
-			</div>
-			<div id="advancedOptions" class="settings" style="display: none">
-				<div class="option" style="margin-top: 0px;">
-					<h3 class="advancedName">Debug Stage</h3>
-					<p class="helpTip">Check the output of different stages of the algorithm.</p>
-					<span class="range">
-						<input type="range" id="processStepSlider" value="7" min="0" max="7" step="1">
-						<h4 id="processStepValue"></h4>
-					</span>
-				</div>
-				<div class="option">
-					<h3 class="advancedName">Blur Radius:</h3>
-					<p class="helpTip">The radius of the Gaussian blur to apply to the image. Reduces noise but can
-						lose weak edges.</p>
-					<span class="range">
-						<input type="range" id="gaussianBlurSlider" value="0" min="0" max="5" step="1">
-						<h4 id="gaussianBlurValue"></h4>
-					</span>
-				</div>
-				<div class="option">
-					<h3 class="advancedName">Edge Threshold:</h3>
-					<p class="helpTip">The most commonly-changed setting. Higher values will cause more characters
-						in the output.</p>
-					<span class="range">
-						<input type="range" id="thresholdSlider" value="0.2" min="0" max="1" step="0.05">
-						<h4 id="thresholdValue"></h4>
-					</span>
-				</div>
-				<div class="option">
-					<h3 class="advancedName">Dilate Radius:</h3>
-					<p class="helpTip">Thickens the detected edges.</p>
-					<span class="range">
-						<input type="range" id="dilateSlider" value="0" min="0" max="8" step="1">
-						<h4 id="dilateValue"></h4>
-					</span>
-				</div>
-				<div class="option">
-					<h3 class="advancedName">Erode Radius:</h3>
-					<p class="helpTip">Narrows the detected edges. When used with an equivalent Dilate, cleans up noise.
-					</p>
-					<span class="range">
-						<input type="range" id="erodeSlider" value="0" min="0" max="8" step="1">
-						<h4 id="erodeValue"></h4>
-					</span>
-				</div>
-				<div class="option">
-					<h3 class="advancedName">SDF Blur Radius:</h3>
-					<p class="helpTip">Higher values will cause more characters in the output.</p>
-					<span class="range">
-						<input type="range" id="sdfRadiusSlider" value="4" min="0" max="8" step="1">
-						<h4 id="sdfRadiusValue"></h4>
-					</span>
-				</div>
-				<div class="option" style="margin-bottom: 0;">
-					<h3 class="advancedName">Inverse Match Weight:</h3>
-					<p class="helpTip">Penalty applied to characters that don't fit the detected shape as well.
-						Higher values will cause less characters in the output.</p>
-					<span class="range">
-						<input type="range" id="inverseMatchSlider" value="11" min="0" max="15" step="0.5">
-						<h4 id="inverseMatchValue"></h4>
-					</span>
-				</div>
-			</div>
-		</main>
+<body>
+    <section class="header">
+        <a class="smoothscroll" href="#step1" style="padding-bottom: 15px;">
+            <div class="scroll-down"></div>
+        </a>
 
-		<a class="smoothscroll" href="#step1" style="padding-bottom: 15px;">
-			<div class="scroll-down"></div>
-		</a>
+        <div class="word"></div>
+        <script>
+            var words = ['Hello there!', 'Welcome to ASCII Art Generator!', `version 1.0`],
+                part,
+                i = 0,
+                offset = 0,
+                len = words.length,
+                forwards = true,
+                skip_count = 0,
+                skip_delay = 15,
+                speed = 70;
+            var wordflick = function () {
+                setInterval(function () {
+                    if (forwards) {
+                        if (offset >= words[i].length) {
+                            ++skip_count;
+                            if (skip_count == skip_delay) {
+                                forwards = false;
+                                skip_count = 0;
+                            }
+                        }
+                    } else {
+                        if (offset == 0) {
+                            forwards = true;
+                            i++;
+                            offset = 0;
+                            if (i >= len) {
+                                i = 0;
+                            }
+                        }
+                    }
+                    part = words[i].substr(0, offset);
+                    if (skip_count == 0) {
+                        if (forwards) {
+                            offset++;
+                        } else {
+                            offset--;
+                        }
+                    }
+                    $('.word').text(part);
+                }, speed);
+            };
 
-		<div class="word"></div>
-		<script>
-			var words = ['Hello there!', 'Welcome to ASCII Art Generator!', `version 2.0`],
-				part,
-				i = 0,
-				offset = 0,
-				len = words.length,
-				forwards = true,
-				skip_count = 0,
-				skip_delay = 15,
-				speed = 70;
-			var wordflick = function () {
-				setInterval(function () {
-					if (forwards) {
-						if (offset >= words[i].length) {
-							++skip_count;
-							if (skip_count == skip_delay) {
-								forwards = false;
-								skip_count = 0;
-							}
-						}
-					} else {
-						if (offset == 0) {
-							forwards = true;
-							i++;
-							offset = 0;
-							if (i >= len) {
-								i = 0;
-							}
-						}
-					}
-					part = words[i].substr(0, offset);
-					if (skip_count == 0) {
-						if (forwards) {
-							offset++;
-						} else {
-							offset--;
-						}
-					}
-					$('.word').text(part);
-				}, speed);
-			};
+            $(document).ready(function () {
+                wordflick();
+            });
+        </script>
+    </section>
+    <section>
+        <div class="stepbox">
 
-			$(document).ready(function () {
-				wordflick();
-			});
-		</script>
-	</section>
-	<section style="padding: 15px;">
-		<div class="stepbox" id="step1">
+            <div id="intro">
+                <i>
+                This page takes an image and creates an ASCII Art Image using pixel transform algorithm where characters
+                are assigned on basis of grayscale value of each pixel. <br>
+                It works best for images with solid colors and
+                high contrast.</i>
+                <br><br>
+            </div>
 
-			<div id="intro">
-				This page takes an image and attempts to create an ASCII-art derivative of it using an edge-detection
-				algorithm. It works best for images with solid colors and hard edges.
-				<br><br>
-			</div>
 
-			<hr>
+            <hr>
+            <label for="filereader" class="drop-container" id="dropcontainer">
+                <span class="drop-title">Drop files here</span>
+                or
+                <input type="file" id="filereader" accept="image/*" onchange="onFileInput()" required>
+            </label>
+            <script>
+                const dropContainer = document.getElementById("dropcontainer")
+                const fileIn = document.getElementById("filereader")
 
-			<label for="filereader" class="drop-container" id="dropcontainer">
-				<span class="drop-title">Drop files here</span>
-				or
-				<input type="file" id="filereader" accept="image/*" onchange="onFileInput()" required>
-			</label>
+                dropContainer.addEventListener("dragover", (e) => {
+                    e.preventDefault()
+                }, false)
 
-			<script>
-				const dropContainer = document.getElementById("dropcontainer")
-				const fileInput = document.getElementById("filereader")
+                dropContainer.addEventListener("dragenter", () => {
+                    dropContainer.classList.add("drag-active")
+                })
 
-				dropContainer.addEventListener("dragover", (e) => {
-					e.preventDefault()
-				}, false)
+                dropContainer.addEventListener("dragleave", () => {
+                    dropContainer.classList.remove("drag-active")
+                })
 
-				dropContainer.addEventListener("dragenter", () => {
-					dropContainer.classList.add("drag-active")
-				})
-
-				dropContainer.addEventListener("dragleave", () => {
-					dropContainer.classList.remove("drag-active")
-				})
-
-				dropContainer.addEventListener("drop", (e) => {
-					e.preventDefault()
-					dropContainer.classList.remove("drag-active")
-					fileInput.files = e.dataTransfer.files
-				})
-			</script>
-			<div
-				style="align-items: center; justify-content: center; text-align: center; display: grid;place-items: center;">
-				<h3 style="font-weight: 800;">Select a preset</h3>
-
-				<div class="multi-button">
-					<button class="btn1" onclick="setGraphicPreset()"><span class="iconify"
-							data-icon="mdi:high-definition-box" data-width="40" data-height="40"></span></button>
-					<button class="btn2" onclick="setPhotoPreset()"><span class="iconify" data-icon="ic:baseline-sd"
-							data-width="40" data-height="40"></span></button>
-				</div>
-			</div>
-			<script>
-				const button1 = document.querySelector('.btn1');
-				const button2 =
-					document.querySelector('.btn2');
-
-				button1.addEventListener('click', () => {
-					button1.classList.toggle('active');
-					button2.classList.remove('active');
-				})
-
-				button2.addEventListener('click', () => {
-					button2.classList.toggle('active');
-					button1.classList.remove('active');
-				})
-			</script>
-
-			<duet-number-input id="outputHeightSlider" label="Output Height" value="32" min="8" max="60" step="1"
-				unit="px">
-			</duet-number-input>
-
-			<script>
-				var input = document.querySelector("duet-number-input")
-
-				input.addEventListener("duetChange", function (e) {
-					onOutputHeightChanged();
-					console.log("Change detected in Number Input:", e.detail)
-				})
-			</script>
-			<hr>
-			<div id="outputParent">
-				<p class="center"><canvas id="rawCanvas"></canvas> <canvas id="outputCanvas"></canvas></p>
-
-				<div class="text-wrap">
-					<p class="center">
-						<pre id="outputText" readonly></pre>
-					</p>
-					<div id="copyToClipboard-a" class="clipboard icon"><i class="ri-clipboard-line"></i></div>
-				</div>
-			</div>
-			<script type="text/javascript">
-				document.getElementById('copyToClipboard-a').addEventListener('click', function () {
-					const copyText = document.getElementById("outputText").textContent;
-					const textArea = document.createElement('textarea');
-					textArea.textContent = copyText;
-					document.body.append(textArea);
-					textArea.select();
-					document.execCommand("copy");
-				})
-			</script>
-		</div>
-	</section>
+                dropContainer.addEventListener("drop", (e) => {
+                    e.preventDefault()
+                    dropContainer.classList.remove("drag-active")
+                    fileIn.files = e.dataTransfer.files
+                })
+            </script>
+            <div id="outputParent">
+                <canvas id="preview" style="display: none;"></canvas>
+                <div class="text-wrap">
+                    <pre id="ascii"></pre>
+                    <div id="copyToClipboard-a" class="clipboard icon"><i class="ri-clipboard-line"></i></div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                document.getElementById('copyToClipboard-a').addEventListener('click', function () {
+                    const copyText = document.getElementById("ascii").textContent;
+                    const textArea = document.createElement('textarea');
+                    textArea.textContent = copyText;
+                    document.body.append(textArea);
+                    textArea.select();
+                    document.execCommand("copy");
+                })
+            </script>
+        </div>
+    </section>
+    <script src="ascii.js"></script>
 </body>
 
 </html>

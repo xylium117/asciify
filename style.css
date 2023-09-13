@@ -592,6 +592,7 @@ input[type="file"]::file-selector-button:active {
   padding: 50px;
   margin: 50px;
   width: 70vw;
+  text-align: center;
 }
 
 div.multi-button {

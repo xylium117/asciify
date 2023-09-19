@@ -2,18 +2,18 @@
 <html lang="en">
 
 <head>
-	<title>ASCII Image Generator</title>
+	<title>ASCIIfy | v2</title>
 
 	<!--=============== META PROPERTIES ===============-->
-	<meta property="og:title" content="ASCII Image Generator">
-	<meta property="og:url" content="http://ayushmansarkar.github.io/ascii-art/">
+	<meta property="og:title" content="ASCIIfy">
+	<meta property="og:url" content="http://ayushmansarkar.github.io/asciify/">
 	<meta property="og:type" content="website">
 	<meta property="og:description" content="Creates ASCII art from image">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="keywords" content="ascii art,ascii">
 	<meta name="description" content="Creates ASCII art from image">
-	<link rel="icon" href="/icon.png" type="image/png" />
+	<link rel="icon" href="./icon.png" type="image/png" />
 
 	<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
 
@@ -38,15 +38,6 @@
 
 	<!--=============== PREREQUISITES ===============-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<style>
-		#canvasDiv {
-			padding: 0;
-			margin: auto;
-			overflow: hidden;
-			z-index: -1;
-			border: 1px solid black;
-		}
-	</style>
 	<script src="ascii.js"></script>
 	<script>
 		document.onkeydown = (e) => {
@@ -187,6 +178,7 @@
 						<h4 id="inverseMatchValue"></h4>
 					</span>
 				</div>
+			</div>
 		</main>
 
 		<a class="smoothscroll" href="#step1" style="padding-bottom: 15px;">
@@ -195,7 +187,7 @@
 
 		<div class="word"></div>
 		<script>
-			var words = ['Hello there!', 'Welcome to ASCII Art Generator!', `version 2.0`],
+			var words = ['Hello there!', 'Welcome to ASCIIfy!', `version 2.0`],
 				part,
 				i = 0,
 				offset = 0,

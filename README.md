@@ -1,4 +1,4 @@
-# ASCII Art Filter Webpage
+# ASCIIfy
 
 Turn your images into stunning ASCII art with this fun and interactive web application! Transform your photos into a unique blend of characters and symbols.
 
